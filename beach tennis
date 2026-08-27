@@ -1,316 +1,183 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Beach Radar</title>
 
 <style>
 
-:root {
-    --bg: #0b1220;
-    --bg-secondary: #111a2b;
-    --card: #141f32;
-    --card-hover: #19263d;
-
-    --primary: #20d68a;
-    --primary-dark: #13a96b;
-
-    --text: #f5f7fa;
-    --text-secondary: #94a3b8;
-
-    --border: #26344d;
-
-    --danger: #ef4444;
-    --warning: #f59e0b;
-}
-
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
-    background: var(--bg);
-    color: var(--text);
-    font-family:
-        Inter,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
+    font-family: Arial, sans-serif;
+    background: #07111f;
+    color: white;
     min-height: 100vh;
 }
 
-
-/* ===============================
-   HEADER
-================================ */
+/* HEADER */
 
 header {
-
-    padding: 22px 20px;
-
-    border-bottom:
-        1px solid var(--border);
-
-    background:
-        rgba(11, 18, 32, 0.95);
-
-    position: sticky;
-
-    top: 0;
-
-    z-index: 100;
-
-    backdrop-filter:
-        blur(12px);
-
+    background: #0c192b;
+    border-bottom: 1px solid #20334d;
+    padding: 18px;
 }
 
-.header-content {
-
-    max-width: 850px;
-
+.header {
+    max-width: 900px;
     margin: auto;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
 }
 
 .logo {
-
     display: flex;
-
     align-items: center;
-
-    gap: 10px;
-
+    gap: 12px;
 }
 
 .logo-icon {
-
-    width: 42px;
-    height: 42px;
+    width: 45px;
+    height: 45px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            #12a8e8
-        );
 
     border-radius: 12px;
 
-    font-size: 22px;
+    background: linear-gradient(
+        135deg,
+        #20d68a,
+        #149fe3
+    );
 
+    font-size: 24px;
 }
 
 .logo h1 {
-
-    font-size: 20px;
-
-    letter-spacing: -0.5px;
-
+    font-size: 21px;
 }
 
-.logo span {
-
-    color: var(--text-secondary);
-
+.logo p {
+    color: #8da0b8;
     font-size: 12px;
-
+    margin-top: 3px;
 }
 
+/* GPS */
 
-/* ===============================
-   CONTAINER
-================================ */
-
-.container {
-
-    width: 100%;
-
-    max-width: 850px;
-
-    margin: auto;
-
-    padding:
-        28px 18px 80px;
-
-}
-
-
-/* ===============================
-   STATUS
-================================ */
-
-.status-card {
-
-    background:
-        linear-gradient(
-            145deg,
-            #162238,
-            #101a2a
-        );
-
-    border:
-        1px solid var(--border);
-
-    border-radius: 20px;
-
-    padding: 26px;
-
-    margin-bottom: 22px;
-
-}
-
-.status-top {
-
+.gps {
     display: flex;
-
-    justify-content: space-between;
-
     align-items: center;
-
-}
-
-.status-label {
-
-    color:
-        var(--text-secondary);
-
-    font-size: 13px;
-
-    margin-bottom: 6px;
-
-}
-
-.status-title {
-
-    font-size: 22px;
-
-    font-weight: 700;
-
-}
-
-.gps-status {
-
-    display: flex;
-
-    align-items: center;
-
     gap: 7px;
 
-    color:
-        var(--text-secondary);
-
+    color: #8da0b8;
     font-size: 13px;
-
 }
 
-.dot {
-
+.gps-dot {
     width: 9px;
-
     height: 9px;
 
     border-radius: 50%;
 
-    background:
-        var(--warning);
-
+    background: #f59e0b;
 }
 
-.dot.active {
-
-    background:
-        var(--primary);
+.gps-dot.active {
+    background: #20d68a;
 
     box-shadow:
         0 0 12px
-        rgba(32, 214, 138, 0.8);
-
+        rgba(32,214,138,.8);
 }
 
+/* MAIN */
 
-/* ===============================
-   PLAYER STATUS
-================================ */
+main {
+    max-width: 900px;
+    margin: auto;
+    padding: 25px 16px 60px;
+}
 
-.player-status {
+/* STATUS */
 
-    margin-top: 28px;
+.status {
+    background: #101e31;
 
+    border: 1px solid #20334d;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    margin-bottom: 18px;
+}
+
+.status-label {
+    color: #8da0b8;
+    font-size: 12px;
+    margin-bottom: 7px;
+}
+
+.status-title {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.status-text {
+    color: #8da0b8;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+/* ACTIVE */
+
+.active-box {
     display: none;
+
+    margin-top: 20px;
 
     text-align: center;
 
-    padding: 28px;
+    padding: 25px;
 
-    border-radius: 16px;
+    border-radius: 15px;
 
-    background:
-        rgba(32, 214, 138, 0.08);
+    background: rgba(32,214,138,.08);
 
-    border:
-        1px solid
-        rgba(32, 214, 138, 0.25);
-
+    border: 1px solid rgba(32,214,138,.3);
 }
 
-.player-status.active {
-
+.active-box.show {
     display: block;
-
 }
 
-.racket {
-
-    font-size: 62px;
-
-    margin-bottom: 12px;
-
+.active-icon {
+    font-size: 55px;
+    margin-bottom: 10px;
 }
 
-.player-status h2 {
-
-    font-size: 20px;
-
-    margin-bottom: 8px;
-
+.active-box h2 {
+    margin-bottom: 7px;
 }
 
-.player-status p {
-
-    color:
-        var(--text-secondary);
-
+.active-box p {
+    color: #8da0b8;
 }
 
-
-/* ===============================
-   STATS
-================================ */
+/* STATS */
 
 .stats {
-
     display: grid;
 
     grid-template-columns:
@@ -318,299 +185,216 @@ header {
 
     gap: 14px;
 
-    margin-bottom: 22px;
-
+    margin-bottom: 18px;
 }
 
 .stat {
+    background: #101e31;
 
-    background:
-        var(--card);
-
-    border:
-        1px solid var(--border);
+    border: 1px solid #20334d;
 
     border-radius: 16px;
 
     padding: 20px;
-
 }
 
-.stat-number {
+.number {
+    color: #20d68a;
 
-    font-size: 28px;
+    font-size: 30px;
 
-    font-weight: 700;
-
-    color:
-        var(--primary);
-
+    font-weight: bold;
 }
 
-.stat-label {
-
-    margin-top: 4px;
+.label {
+    color: #8da0b8;
 
     font-size: 13px;
 
-    color:
-        var(--text-secondary);
-
+    margin-top: 5px;
 }
 
-
-/* ===============================
-   SECTION
-================================ */
+/* SECTION */
 
 .section {
+    background: #101e31;
 
-    background:
-        var(--card);
-
-    border:
-        1px solid var(--border);
+    border: 1px solid #20334d;
 
     border-radius: 18px;
 
     padding: 22px;
-
-    margin-bottom: 20px;
-
 }
 
 .section-header {
-
     display: flex;
-
-    align-items: center;
 
     justify-content: space-between;
 
+    align-items: center;
+
     margin-bottom: 18px;
 
+    gap: 10px;
 }
 
-.section h2 {
-
+.section-header h2 {
     font-size: 18px;
-
 }
 
-
-/* ===============================
-   BUTTON
-================================ */
+/* BUTTON */
 
 button {
-
     border: none;
-
-    cursor: pointer;
-
-    font-size: 14px;
-
-    font-weight: 600;
 
     border-radius: 10px;
 
-    transition:
-        0.2s ease;
+    cursor: pointer;
 
+    font-weight: bold;
+
+    transition: .2s;
 }
 
-.btn-primary {
+.primary {
+    background: #20d68a;
 
-    background:
-        var(--primary);
+    color: #061b11;
 
-    color:
-        #062014;
-
-    padding:
-        13px 18px;
-
+    padding: 12px 16px;
 }
 
-.btn-primary:hover {
+.primary:hover {
+    background: #13b975;
 
-    background:
-        var(--primary-dark);
-
-    transform:
-        translateY(-1px);
-
+    transform: translateY(-1px);
 }
 
-.btn-secondary {
+.secondary {
+    background: #20334d;
 
-    background:
-        #1d2b42;
+    color: white;
 
-    color:
-        var(--text);
-
-    padding:
-        11px 15px;
-
+    padding: 12px 16px;
 }
 
-.btn-danger {
+/* LOCATIONS */
 
-    background:
-        transparent;
-
-    color:
-        var(--danger);
-
-    border:
-        1px solid
-        rgba(239,68,68,0.3);
-
-    padding:
-        8px 12px;
-
-}
-
-
-/* ===============================
-   LOCATIONS
-================================ */
-
-.location-list {
-
+.locations {
     display: flex;
 
     flex-direction: column;
 
     gap: 12px;
-
 }
 
 .location {
-
-    padding: 17px;
-
-    border-radius: 14px;
-
-    background:
-        var(--bg-secondary);
-
-    border:
-        1px solid var(--border);
-
     display: flex;
 
     align-items: center;
 
     justify-content: space-between;
 
+    gap: 15px;
+
+    padding: 16px;
+
+    border-radius: 14px;
+
+    background: #0b1727;
+
+    border: 1px solid #20334d;
 }
 
 .location.active {
-
-    border-color:
-        var(--primary);
+    border-color: #20d68a;
 
     background:
-        rgba(32,214,138,0.06);
-
+        rgba(32,214,138,.06);
 }
 
 .location-info {
-
     display: flex;
 
     align-items: center;
 
-    gap: 13px;
-
+    gap: 12px;
 }
 
 .location-icon {
-
-    width: 42px;
-
-    height: 42px;
-
-    border-radius: 12px;
+    width: 43px;
+    height: 43px;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
-    background:
-        #1d2b42;
+    border-radius: 12px;
 
+    background: #1b2b42;
+
+    font-size: 20px;
 }
 
 .location-name {
-
-    font-weight: 600;
-
+    font-weight: bold;
 }
 
 .location-meta {
-
-    margin-top: 4px;
+    color: #8da0b8;
 
     font-size: 12px;
 
-    color:
-        var(--text-secondary);
-
+    margin-top: 5px;
 }
 
-.location-distance {
-
-    color:
-        var(--primary);
+.distance {
+    color: #20d68a;
 
     font-size: 13px;
 
-    font-weight: 600;
+    font-weight: bold;
 
+    white-space: nowrap;
 }
 
+.remove {
+    margin-top: 8px;
 
-/* ===============================
-   EMPTY STATE
-================================ */
+    background: transparent;
+
+    color: #ef4444;
+
+    border: 1px solid rgba(239,68,68,.3);
+
+    padding: 6px 9px;
+
+    font-size: 11px;
+}
+
+/* EMPTY */
 
 .empty {
-
     text-align: center;
 
-    padding: 35px 10px;
+    padding: 35px;
 
-    color:
-        var(--text-secondary);
-
+    color: #8da0b8;
 }
 
 .empty-icon {
-
     font-size: 35px;
 
-    margin-bottom: 10px;
-
+    margin-bottom: 8px;
 }
 
-
-/* ===============================
-   MODAL
-================================ */
+/* MODAL */
 
 .modal {
-
     position: fixed;
 
     inset: 0;
-
-    background:
-        rgba(0,0,0,0.65);
 
     display: none;
 
@@ -618,134 +402,109 @@ button {
 
     justify-content: center;
 
-    padding: 20px;
+    padding: 18px;
 
-    z-index: 1000;
+    background: rgba(0,0,0,.75);
 
+    z-index: 100;
 }
 
-.modal.open {
-
+.modal.show {
     display: flex;
-
 }
 
-.modal-content {
-
+.modal-box {
     width: 100%;
 
     max-width: 450px;
 
-    background:
-        #121d30;
+    background: #101e31;
 
-    border:
-        1px solid var(--border);
+    border: 1px solid #263b57;
 
-    border-radius: 20px;
+    border-radius: 18px;
 
     padding: 24px;
-
 }
 
-.modal-content h2 {
-
+.modal-box h2 {
     margin-bottom: 20px;
-
 }
 
 label {
-
     display: block;
+
+    color: #8da0b8;
 
     font-size: 13px;
 
-    color:
-        var(--text-secondary);
-
     margin-bottom: 7px;
-
 }
 
 input,
 select {
-
     width: 100%;
 
     padding: 13px;
 
-    border-radius: 10px;
-
-    border:
-        1px solid var(--border);
-
-    background:
-        #0d1626;
-
-    color:
-        white;
-
     margin-bottom: 16px;
 
-    outline: none;
+    border-radius: 10px;
 
+    border: 1px solid #263b57;
+
+    background: #081423;
+
+    color: white;
+
+    outline: none;
 }
 
 input:focus,
 select:focus {
-
-    border-color:
-        var(--primary);
-
+    border-color: #20d68a;
 }
 
-.modal-actions {
-
+.modal-buttons {
     display: flex;
 
     gap: 10px;
-
 }
 
-.modal-actions button {
-
+.modal-buttons button {
     flex: 1;
-
 }
 
+/* MOBILE */
 
-/* ===============================
-   RESPONSIVO
-================================ */
+@media(max-width:600px) {
 
-@media (max-width: 600px) {
-
-    .container {
-        padding: 20px 14px 60px;
+    .header {
+        align-items: flex-start;
     }
 
-    .status-card {
-        padding: 20px;
+    .gps {
+        font-size: 11px;
     }
 
     .location {
         align-items: flex-start;
     }
 
+    .distance {
+        font-size: 12px;
+    }
+
 }
 
 </style>
-
 </head>
 
 <body>
 
-
-<!-- HEADER -->
-
 <header>
 
-<div class="header-content">
+<div class="header">
 
 <div class="logo">
 
@@ -757,21 +516,21 @@ select:focus {
 
 <h1>Beach Radar</h1>
 
-<span>Jogadores perto de você</span>
+<p>Jogadores perto de você</p>
 
 </div>
 
 </div>
 
-<div class="gps-status">
+<div class="gps">
 
 <div
 id="gpsDot"
-class="dot">
+class="gps-dot">
 </div>
 
 <span id="gpsText">
-Conectando GPS
+GPS aguardando
 </span>
 
 </div>
@@ -781,18 +540,11 @@ Conectando GPS
 </header>
 
 
-<!-- CONTAINER -->
-
-<main class="container">
-
+<main>
 
 <!-- STATUS -->
 
-<section class="status-card">
-
-<div class="status-top">
-
-<div>
+<section class="status">
 
 <div class="status-label">
 STATUS ATUAL
@@ -802,20 +554,25 @@ STATUS ATUAL
 id="statusTitle"
 class="status-title">
 
-Localizando você...
+Aguardando localização...
 
 </div>
 
-</div>
+<div
+id="statusText"
+class="status-text">
+
+Permita o acesso à localização
+para utilizar o Beach Radar.
 
 </div>
 
 
 <div
-id="playerStatus"
-class="player-status">
+id="activeBox"
+class="active-box">
 
-<div class="racket">
+<div class="active-icon">
 🏓
 </div>
 
@@ -823,7 +580,7 @@ class="player-status">
 Você está no ponto!
 </h2>
 
-<p id="activeLocationName">
+<p id="activeName">
 </p>
 
 </div>
@@ -831,7 +588,7 @@ Você está no ponto!
 </section>
 
 
-<!-- STATS -->
+<!-- ESTATÍSTICAS -->
 
 <section class="stats">
 
@@ -839,16 +596,14 @@ Você está no ponto!
 
 <div
 id="locationsCount"
-class="stat-number">
+class="number">
 
 0
 
 </div>
 
-<div class="stat-label">
-
+<div class="label">
 Locais cadastrados
-
 </div>
 
 </div>
@@ -857,17 +612,15 @@ Locais cadastrados
 <div class="stat">
 
 <div
-id="playersCount"
-class="stat-number">
+id="activeCount"
+class="number">
 
-0
+NÃO
 
 </div>
 
-<div class="stat-label">
-
-Jogadores ativos
-
+<div class="label">
+Você está em um ponto
 </div>
 
 </div>
@@ -875,7 +628,7 @@ Jogadores ativos
 </section>
 
 
-<!-- LOCATIONS -->
+<!-- LOCAIS -->
 
 <section class="section">
 
@@ -886,7 +639,7 @@ Jogadores ativos
 </h2>
 
 <button
-class="btn-primary"
+class="primary"
 onclick="openModal()">
 
 + Adicionar
@@ -897,23 +650,12 @@ onclick="openModal()">
 
 
 <div
-id="locationsList"
-class="location-list">
-
-<div class="empty">
-
-<div class="empty-icon">
-📍
-</div>
-
-Nenhum local cadastrado.
-
-</div>
+id="locations"
+class="locations">
 
 </div>
 
 </section>
-
 
 </main>
 
@@ -924,45 +666,35 @@ Nenhum local cadastrado.
 id="modal"
 class="modal">
 
-<div class="modal-content">
+<div class="modal-box">
 
 <h2>
-Adicionar local
+Adicionar ponto
 </h2>
-
 
 <label>
 Nome do local
 </label>
 
 <input
-id="locationName"
+id="name"
 type="text"
-placeholder="Ex: Arena Central"
-/>
+placeholder="Ex: Arena Central">
 
 
 <label>
 Tipo
 </label>
 
-<select id="locationType">
+<select id="type">
 
-<option>
-Arena
-</option>
+<option>Arena</option>
 
-<option>
-Quadra
-</option>
+<option>Quadra</option>
 
-<option>
-Praia
-</option>
+<option>Praia</option>
 
-<option>
-Clube
-</option>
+<option>Clube</option>
 
 </select>
 
@@ -972,25 +704,25 @@ Raio de presença
 </label>
 
 <input
-id="locationRadius"
+id="radius"
 type="number"
 value="100"
-/>
+min="20"
+max="1000">
 
 
-<div class="modal-actions">
+<div class="modal-buttons">
 
 <button
-class="btn-secondary"
+class="secondary"
 onclick="closeModal()">
 
 Cancelar
 
 </button>
 
-
 <button
-class="btn-primary"
+class="primary"
 onclick="addLocation()">
 
 Adicionar
@@ -1006,155 +738,112 @@ Adicionar
 
 <script>
 
+/*
+========================================
+BEACH RADAR
+========================================
+*/
 
-/* ==========================================
-   ESTADO
-========================================== */
-
-let currentLatitude = null;
-let currentLongitude = null;
+let userLat = null;
+let userLon = null;
 
 let activeLocation = null;
 
 
-/* ==========================================
-   IDENTIFICADOR ANÔNIMO
-========================================== */
-
-let playerId =
-localStorage.getItem("beachPlayerId");
-
-
-if (!playerId) {
-
-    playerId =
-        crypto.randomUUID();
-
-    localStorage.setItem(
-        "beachPlayerId",
-        playerId
-    );
-
-}
-
-
-/* ==========================================
-   STORAGE
-========================================== */
+/*
+========================================
+STORAGE
+========================================
+*/
 
 function getLocations() {
 
-    return JSON.parse(
+    try {
 
-        localStorage.getItem(
-            "beachLocations"
-        )
+        return JSON.parse(
+            localStorage.getItem(
+                "beachRadar"
+            )
+        ) || [];
 
-    ) || [];
+    } catch {
+
+        return [];
+
+    }
 
 }
 
 
-function saveLocations(locations) {
+function saveLocations(data) {
 
     localStorage.setItem(
-
-        "beachLocations",
-
-        JSON.stringify(
-            locations
-        )
-
+        "beachRadar",
+        JSON.stringify(data)
     );
 
 }
 
 
-/* ==========================================
-   HAVERSINE
-========================================== */
+/*
+========================================
+DISTÂNCIA
+========================================
+*/
 
 function calculateDistance(
-
     lat1,
     lon1,
     lat2,
     lon2
-
 ) {
 
     const R = 6371000;
 
     const dLat =
         (lat2 - lat1)
-        *
-        Math.PI
-        /
-        180;
+        * Math.PI / 180;
 
     const dLon =
         (lon2 - lon1)
-        *
-        Math.PI
-        /
-        180;
-
+        * Math.PI / 180;
 
     const a =
-
-        Math.sin(
-            dLat / 2
-        ) ** 2
-
-        +
+        Math.sin(dLat / 2) ** 2 +
 
         Math.cos(
-            lat1 *
-            Math.PI /
-            180
-        )
-
-        *
+            lat1 * Math.PI / 180
+        ) *
 
         Math.cos(
-            lat2 *
-            Math.PI /
-            180
-        )
+            lat2 * Math.PI / 180
+        ) *
 
-        *
-
-        Math.sin(
-            dLon / 2
-        ) ** 2;
-
+        Math.sin(dLon / 2) ** 2;
 
     const c =
-
         2 *
         Math.atan2(
-
             Math.sqrt(a),
-
             Math.sqrt(1 - a)
-
         );
-
 
     return R * c;
 
 }
 
 
-/* ==========================================
-   GPS
-========================================== */
+/*
+========================================
+GPS
+========================================
+*/
 
 function startGPS() {
 
     if (!navigator.geolocation) {
 
-        setGPSStatus(
+        setGPS(
             false,
             "GPS indisponível"
         );
@@ -1166,16 +855,16 @@ function startGPS() {
 
     navigator.geolocation.watchPosition(
 
-        position => {
+        function(position) {
 
-            currentLatitude =
+            userLat =
                 position.coords.latitude;
 
-            currentLongitude =
+            userLon =
                 position.coords.longitude;
 
 
-            setGPSStatus(
+            setGPS(
                 true,
                 "GPS ativo"
             );
@@ -1185,16 +874,30 @@ function startGPS() {
 
         },
 
+        function() {
 
-        error => {
-
-            setGPSStatus(
+            setGPS(
                 false,
-                "Ative a localização"
+                "Localização bloqueada"
             );
 
-        },
 
+            document
+                .getElementById(
+                    "statusTitle"
+                )
+                .textContent =
+                "Localização bloqueada";
+
+
+            document
+                .getElementById(
+                    "statusText"
+                )
+                .textContent =
+                "Permita a localização no navegador.";
+
+        },
 
         {
 
@@ -1211,7 +914,7 @@ function startGPS() {
 }
 
 
-function setGPSStatus(
+function setGPS(
     active,
     text
 ) {
@@ -1220,7 +923,6 @@ function setGPSStatus(
         document.getElementById(
             "gpsDot"
         );
-
 
     const label =
         document.getElementById(
@@ -1237,9 +939,7 @@ function setGPSStatus(
             "active"
         );
 
-    }
-
-    else {
+    } else {
 
         dot.classList.remove(
             "active"
@@ -1250,18 +950,21 @@ function setGPSStatus(
 }
 
 
-/* ==========================================
-   VERIFICAR PRESENÇA
-========================================== */
+/*
+========================================
+VERIFICAR PONTOS
+========================================
+*/
 
 function checkLocations() {
 
     if (
-        currentLatitude === null
-        ||
-        currentLongitude === null
+        userLat === null ||
+        userLon === null
     ) {
+
         return;
+
     }
 
 
@@ -1277,30 +980,27 @@ function checkLocations() {
         of locations
     ) {
 
-        const distance =
+        const meters =
             calculateDistance(
 
-                currentLatitude,
-
-                currentLongitude,
+                userLat,
+                userLon,
 
                 location.latitude,
-
                 location.longitude
 
             );
 
 
         if (
-            distance <=
-            location.radius
+            meters <= location.radius
         ) {
 
             activeLocation = {
 
                 ...location,
 
-                distance
+                distance: meters
 
             };
 
@@ -1311,74 +1011,79 @@ function checkLocations() {
     }
 
 
-    updateInterface();
+    updateScreen();
 
 }
 
 
-/* ==========================================
-   ATUALIZAR INTERFACE
-========================================== */
+/*
+========================================
+ATUALIZAR TELA
+========================================
+*/
 
-function updateInterface() {
+function updateScreen() {
 
-    const playerStatus =
-        document.getElementById(
-            "playerStatus"
-        );
-
-
-    const statusTitle =
+    const title =
         document.getElementById(
             "statusTitle"
+        );
+
+    const text =
+        document.getElementById(
+            "statusText"
+        );
+
+    const box =
+        document.getElementById(
+            "activeBox"
         );
 
 
     if (activeLocation) {
 
-        playerStatus
-        .classList
-        .add("active");
-
-
-        statusTitle.textContent =
+        title.textContent =
             "Você está jogando!";
 
 
+        text.textContent =
+            "Ponto de encontro detectado.";
+
+
+        box.classList.add(
+            "show"
+        );
+
+
         document
-        .getElementById(
-            "activeLocationName"
-        )
-        .textContent =
+            .getElementById(
+                "activeName"
+            )
+            .textContent =
 
             activeLocation.name
-
             +
-
             " • "
-
             +
-
             Math.round(
                 activeLocation.distance
             )
-
             +
+            " metros";
 
-            " m do ponto";
+    } else {
 
-
-    }
-
-    else {
-
-        playerStatus
-        .classList
-        .remove("active");
-
-
-        statusTitle.textContent =
+        title.textContent =
             "Nenhum ponto próximo";
+
+
+        text.textContent =
+            "Nenhum ponto foi encontrado perto de você.";
+
+
+        box.classList.remove(
+            "show"
+        );
 
     }
 
@@ -1390,9 +1095,11 @@ function updateInterface() {
 }
 
 
-/* ==========================================
-   ESTATÍSTICAS
-========================================== */
+/*
+========================================
+ESTATÍSTICAS
+========================================
+*/
 
 function updateStats() {
 
@@ -1401,35 +1108,36 @@ function updateStats() {
 
 
     document
-    .getElementById(
-        "locationsCount"
-    )
-    .textContent =
+        .getElementById(
+            "locationsCount"
+        )
+        .textContent =
         locations.length;
 
 
     document
-    .getElementById(
-        "playersCount"
-    )
-    .textContent =
-
+        .getElementById(
+            "activeCount"
+        )
+        .textContent =
         activeLocation
-        ? 1
-        : 0;
+        ? "SIM"
+        : "NÃO";
 
 }
 
 
-/* ==========================================
-   RENDERIZAR LOCAIS
-========================================== */
+/*
+========================================
+RENDERIZAR
+========================================
+*/
 
 function renderLocations() {
 
     const container =
         document.getElementById(
-            "locationsList"
+            "locations"
         );
 
 
@@ -1449,8 +1157,13 @@ function renderLocations() {
                     📍
                 </div>
 
-                Nenhum ponto de encontro
-                cadastrado ainda.
+                Nenhum ponto cadastrado.
+
+                <br>
+
+                Clique em
+                "+ Adicionar"
+                para criar um.
 
             </div>
 
@@ -1467,55 +1180,60 @@ function renderLocations() {
     locations.forEach(
         location => {
 
-
-            let distanceText =
-                "Local salvo";
-
+            let meters = null;
 
             let isActive = false;
 
 
             if (
-
-                currentLatitude !== null
-
-                &&
-
-                currentLongitude !== null
-
+                userLat !== null &&
+                userLon !== null
             ) {
 
-                const distance =
+                meters =
                     calculateDistance(
 
-                        currentLatitude,
-
-                        currentLongitude,
+                        userLat,
+                        userLon,
 
                         location.latitude,
-
                         location.longitude
 
                     );
 
 
-                distanceText =
+                isActive =
+                    meters <=
+                    location.radius;
 
-                    Math.round(distance)
+            }
 
-                    +
 
-                    " m";
+            let distanceText =
+                "Local salvo";
 
+
+            if (meters !== null) {
 
                 if (
-
-                    distance <=
-                    location.radius
-
+                    meters >= 1000
                 ) {
 
-                    isActive = true;
+                    distanceText =
+                        (
+                            meters / 1000
+                        ).toFixed(1)
+                        +
+                        " km";
+
+                } else {
+
+                    distanceText =
+                        Math.round(
+                            meters
+                        )
+                        +
+                        " m";
 
                 }
 
@@ -1553,31 +1271,38 @@ function renderLocations() {
 
                         <div class="location-name">
 
-                            ${location.name}
+                            ${escapeHTML(
+                                location.name
+                            )}
 
                         </div>
 
                         <div class="location-meta">
 
-                            ${location.type}
+                            ${escapeHTML(
+                                location.type
+                            )}
 
                             • Raio:
                             ${location.radius} m
 
                         </div>
 
+                        <button
+                            class="remove"
+                            onclick="removeLocation('${location.id}')">
+
+                            Remover
+
+                        </button>
+
                     </div>
 
                 </div>
 
+                <div class="distance">
 
-                <div>
-
-                    <div class="location-distance">
-
-                        ${distanceText}
-
-                    </div>
+                    ${distanceText}
 
                 </div>
 
@@ -1589,22 +1314,63 @@ function renderLocations() {
             );
 
         }
-
     );
 
 }
 
 
-/* ==========================================
-   MODAL
-========================================== */
+/*
+========================================
+PROTEÇÃO
+========================================
+*/
+
+function escapeHTML(text) {
+
+    return String(text)
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+
+}
+
+
+/*
+========================================
+MODAL
+========================================
+*/
 
 function openModal() {
 
     document
-    .getElementById("modal")
-    .classList
-    .add("open");
+        .getElementById(
+            "modal"
+        )
+        .classList
+        .add("show");
 
 }
 
@@ -1612,31 +1378,30 @@ function openModal() {
 function closeModal() {
 
     document
-    .getElementById("modal")
-    .classList
-    .remove("open");
+        .getElementById(
+            "modal"
+        )
+        .classList
+        .remove("show");
 
 }
 
 
-/* ==========================================
-   ADICIONAR LOCAL
-========================================== */
+/*
+========================================
+ADICIONAR LOCAL
+========================================
+*/
 
 function addLocation() {
 
     if (
-
-        currentLatitude === null
-
-        ||
-
-        currentLongitude === null
-
+        userLat === null ||
+        userLon === null
     ) {
 
         alert(
-            "Aguarde o GPS ser ativado."
+            "Ative a localização primeiro."
         );
 
         return;
@@ -1646,30 +1411,28 @@ function addLocation() {
 
     const name =
         document
-        .getElementById(
-            "locationName"
-        )
-        .value
-        .trim();
+            .getElementById(
+                "name"
+            )
+            .value
+            .trim();
 
 
     const type =
         document
-        .getElementById(
-            "locationType"
-        )
-        .value;
+            .getElementById(
+                "type"
+            )
+            .value;
 
 
     const radius =
         Number(
-
             document
-            .getElementById(
-                "locationRadius"
-            )
-            .value
-
+                .getElementById(
+                    "radius"
+                )
+                .value
         );
 
 
@@ -1685,17 +1448,12 @@ function addLocation() {
 
 
     if (
-
-        radius < 20
-
-        ||
-
+        radius < 20 ||
         radius > 1000
-
     ) {
 
         alert(
-            "Escolha um raio entre 20 e 1000 metros."
+            "O raio deve estar entre 20 e 1000 metros."
         );
 
         return;
@@ -1707,37 +1465,35 @@ function addLocation() {
         getLocations();
 
 
+    /*
+    Verificar locais próximos
+    */
+
     for (
         const location
         of locations
     ) {
 
-        const distance =
+        const meters =
             calculateDistance(
 
-                currentLatitude,
-
-                currentLongitude,
+                userLat,
+                userLon,
 
                 location.latitude,
-
                 location.longitude
 
             );
 
 
         if (
-            distance < 50
+            meters < 50
         ) {
 
             alert(
-
-                "Já existe um local próximo: "
-
+                "Já existe um ponto próximo: "
                 +
-
                 location.name
-
             );
 
             return;
@@ -1752,17 +1508,20 @@ function addLocation() {
         id:
             crypto.randomUUID(),
 
-        name,
+        name:
+            name,
 
-        type,
+        type:
+            type,
 
-        radius,
+        radius:
+            radius,
 
         latitude:
-            currentLatitude,
+            userLat,
 
         longitude:
-            currentLongitude,
+            userLon,
 
         createdAt:
             new Date()
@@ -1782,10 +1541,10 @@ function addLocation() {
 
 
     document
-    .getElementById(
-        "locationName"
-    )
-    .value = "";
+        .getElementById(
+            "name"
+        )
+        .value = "";
 
 
     closeModal();
@@ -1796,16 +1555,46 @@ function addLocation() {
 }
 
 
-/* ==========================================
-   INICIALIZAR
-========================================== */
+/*
+========================================
+REMOVER
+========================================
+*/
+
+function removeLocation(id) {
+
+    const locations =
+        getLocations();
+
+
+    const updated =
+        locations.filter(
+            location =>
+                location.id !== id
+        );
+
+
+    saveLocations(
+        updated
+    );
+
+
+    checkLocations();
+
+}
+
+
+/*
+========================================
+INICIAR
+========================================
+*/
 
 renderLocations();
 
 updateStats();
 
 startGPS();
-
 
 </script>
 
