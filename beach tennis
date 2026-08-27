@@ -7,6 +7,22 @@
 <title>Beach Radar</title>
 
 <style>
+:root {
+    --bg: #08111f;
+    --card: #101c2e;
+    --card2: #14233a;
+    --border: #263852;
+
+    --primary: #20d68a;
+    --primary-dark: #12ad6c;
+
+    --text: #f5f7fa;
+    --muted: #91a2b8;
+
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --blue: #38bdf8;
+}
 
 * {
     box-sizing: border-box;
@@ -15,27 +31,40 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #07111f;
-    color: white;
     min-height: 100vh;
+    background:
+        radial-gradient(circle at top, #10233d 0%, var(--bg) 50%);
+    color: var(--text);
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
 }
 
-/* HEADER */
-
 header {
-    background: #0c192b;
-    border-bottom: 1px solid #20334d;
-    padding: 18px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    border-bottom: 1px solid var(--border);
+
+    background: rgba(8,17,31,.92);
+    backdrop-filter: blur(15px);
 }
 
 .header {
     max-width: 900px;
     margin: auto;
 
+    padding: 18px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 15px;
 }
 
 .logo {
@@ -48,393 +77,318 @@ header {
     width: 45px;
     height: 45px;
 
+    border-radius: 13px;
+
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 12px;
-
-    background: linear-gradient(
-        135deg,
-        #20d68a,
-        #149fe3
-    );
+    background:
+        linear-gradient(135deg, var(--primary), #12a8e8);
 
     font-size: 24px;
 }
 
 .logo h1 {
-    font-size: 21px;
+    font-size: 20px;
 }
 
 .logo p {
-    color: #8da0b8;
+    color: var(--muted);
     font-size: 12px;
-    margin-top: 3px;
 }
-
-/* GPS */
 
 .gps {
     display: flex;
     align-items: center;
     gap: 7px;
 
-    color: #8da0b8;
-    font-size: 13px;
+    font-size: 12px;
+    color: var(--muted);
 }
 
-.gps-dot {
+.dot {
     width: 9px;
     height: 9px;
-
     border-radius: 50%;
-
-    background: #f59e0b;
+    background: var(--warning);
 }
 
-.gps-dot.active {
-    background: #20d68a;
-
-    box-shadow:
-        0 0 12px
-        rgba(32,214,138,.8);
+.dot.active {
+    background: var(--primary);
+    box-shadow: 0 0 14px rgba(32,214,138,.8);
 }
 
-/* MAIN */
-
-main {
+.container {
+    width: 100%;
     max-width: 900px;
     margin: auto;
-    padding: 25px 16px 60px;
+
+    padding: 25px 16px 80px;
 }
 
-/* STATUS */
+.card {
+    background: rgba(16,28,46,.95);
+    border: 1px solid var(--border);
+    border-radius: 20px;
 
-.status {
-    background: #101e31;
-
-    border: 1px solid #20334d;
-
-    border-radius: 18px;
-
-    padding: 25px;
-
+    padding: 22px;
     margin-bottom: 18px;
 }
 
-.status-label {
-    color: #8da0b8;
-    font-size: 12px;
-    margin-bottom: 7px;
-}
-
-.status-title {
-    font-size: 25px;
-    font-weight: bold;
-}
-
-.status-text {
-    color: #8da0b8;
-    margin-top: 8px;
-    font-size: 14px;
-}
-
-/* ACTIVE */
-
-.active-box {
-    display: none;
-
-    margin-top: 20px;
-
+.hero {
     text-align: center;
-
-    padding: 25px;
-
-    border-radius: 15px;
-
-    background: rgba(32,214,138,.08);
-
-    border: 1px solid rgba(32,214,138,.3);
+    padding: 30px 20px;
 }
 
-.active-box.show {
-    display: block;
-}
-
-.active-icon {
+.hero-icon {
     font-size: 55px;
     margin-bottom: 10px;
 }
 
-.active-box h2 {
-    margin-bottom: 7px;
+.hero h2 {
+    font-size: 25px;
+    margin-bottom: 8px;
 }
 
-.active-box p {
-    color: #8da0b8;
+.hero p {
+    color: var(--muted);
+    line-height: 1.5;
 }
 
-/* STATS */
+.status {
+    margin-top: 20px;
+
+    padding: 14px;
+
+    border-radius: 13px;
+
+    background: #0b1728;
+    border: 1px solid var(--border);
+
+    color: var(--muted);
+}
+
+.status strong {
+    color: var(--text);
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+
+    margin-top: 18px;
+}
+
+button {
+    border: 0;
+    cursor: pointer;
+
+    padding: 13px 17px;
+
+    border-radius: 11px;
+
+    font-weight: 700;
+    font-size: 14px;
+
+    transition: .2s;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+.primary {
+    background: var(--primary);
+    color: #061b11;
+}
+
+.primary:hover {
+    background: var(--primary-dark);
+}
+
+.secondary {
+    background: var(--card2);
+    color: white;
+    border: 1px solid var(--border);
+}
+
+.danger {
+    background: rgba(239,68,68,.1);
+    color: #ff7070;
+    border: 1px solid rgba(239,68,68,.3);
+}
+
+.buttons button {
+    flex: 1;
+}
 
 .stats {
     display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 14px;
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
 
     margin-bottom: 18px;
 }
 
 .stat {
-    background: #101e31;
-
-    border: 1px solid #20334d;
-
+    background: var(--card);
+    border: 1px solid var(--border);
     border-radius: 16px;
-
-    padding: 20px;
+    padding: 18px;
 }
 
-.number {
-    color: #20d68a;
-
-    font-size: 30px;
-
-    font-weight: bold;
+.stat-number {
+    color: var(--primary);
+    font-size: 27px;
+    font-weight: 800;
 }
 
-.label {
-    color: #8da0b8;
-
-    font-size: 13px;
-
-    margin-top: 5px;
+.stat-label {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 4px;
 }
 
-/* SECTION */
-
-.section {
-    background: #101e31;
-
-    border: 1px solid #20334d;
-
-    border-radius: 18px;
-
-    padding: 22px;
-}
-
-.section-header {
+.section-title {
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
 
-    margin-bottom: 18px;
-
-    gap: 10px;
+    margin-bottom: 15px;
 }
 
-.section-header h2 {
+.section-title h2 {
     font-size: 18px;
 }
 
-/* BUTTON */
-
-button {
-    border: none;
-
-    border-radius: 10px;
-
-    cursor: pointer;
-
-    font-weight: bold;
-
-    transition: .2s;
-}
-
-.primary {
-    background: #20d68a;
-
-    color: #061b11;
-
-    padding: 12px 16px;
-}
-
-.primary:hover {
-    background: #13b975;
-
-    transform: translateY(-1px);
-}
-
-.secondary {
-    background: #20334d;
-
-    color: white;
-
-    padding: 12px 16px;
-}
-
-/* LOCATIONS */
-
-.locations {
+.player {
     display: flex;
-
-    flex-direction: column;
-
-    gap: 12px;
-}
-
-.location {
-    display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
     gap: 15px;
 
-    padding: 16px;
+    padding: 15px;
+
+    background: #0b1728;
+
+    border: 1px solid var(--border);
 
     border-radius: 14px;
 
-    background: #0b1727;
-
-    border: 1px solid #20334d;
+    margin-bottom: 10px;
 }
 
-.location.active {
-    border-color: #20d68a;
-
-    background:
-        rgba(32,214,138,.06);
-}
-
-.location-info {
+.player-left {
     display: flex;
-
     align-items: center;
-
     gap: 12px;
 }
 
-.location-icon {
+.player-icon {
     width: 43px;
     height: 43px;
 
-    display: flex;
+    border-radius: 12px;
 
+    display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 12px;
-
-    background: #1b2b42;
+    background: #162842;
 
     font-size: 20px;
 }
 
-.location-name {
-    font-weight: bold;
+.player-name {
+    font-weight: 700;
 }
 
-.location-meta {
-    color: #8da0b8;
-
+.player-meta {
+    color: var(--muted);
     font-size: 12px;
-
-    margin-top: 5px;
+    margin-top: 4px;
 }
 
 .distance {
-    color: #20d68a;
-
+    color: var(--primary);
+    font-weight: 700;
     font-size: 13px;
-
-    font-weight: bold;
-
-    white-space: nowrap;
 }
 
-.remove {
-    margin-top: 8px;
+.arena {
+    padding: 16px;
 
-    background: transparent;
+    background: #0b1728;
 
-    color: #ef4444;
+    border: 1px solid var(--border);
 
-    border: 1px solid rgba(239,68,68,.3);
+    border-radius: 14px;
 
-    padding: 6px 9px;
-
-    font-size: 11px;
+    margin-bottom: 10px;
 }
 
-/* EMPTY */
+.arena.near {
+    border-color: var(--primary);
+}
+
+.arena-name {
+    font-weight: 700;
+}
+
+.arena-meta {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 5px;
+}
 
 .empty {
     text-align: center;
-
-    padding: 35px;
-
-    color: #8da0b8;
+    color: var(--muted);
+    padding: 25px 10px;
 }
-
-.empty-icon {
-    font-size: 35px;
-
-    margin-bottom: 8px;
-}
-
-/* MODAL */
 
 .modal {
     position: fixed;
-
     inset: 0;
 
+    z-index: 1000;
+
     display: none;
-
     align-items: center;
-
     justify-content: center;
 
-    padding: 18px;
+    padding: 20px;
 
-    background: rgba(0,0,0,.75);
-
-    z-index: 100;
+    background: rgba(0,0,0,.7);
 }
 
-.modal.show {
+.modal.open {
     display: flex;
 }
 
 .modal-box {
     width: 100%;
+    max-width: 430px;
 
-    max-width: 450px;
+    background: #101c2e;
 
-    background: #101e31;
+    border: 1px solid var(--border);
 
-    border: 1px solid #263b57;
+    border-radius: 20px;
 
-    border-radius: 18px;
-
-    padding: 24px;
+    padding: 23px;
 }
 
 .modal-box h2 {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 label {
     display: block;
 
-    color: #8da0b8;
+    color: var(--muted);
 
     font-size: 13px;
 
@@ -447,27 +401,26 @@ select {
 
     padding: 13px;
 
-    margin-bottom: 16px;
+    margin-bottom: 15px;
 
-    border-radius: 10px;
-
-    border: 1px solid #263b57;
-
-    background: #081423;
+    background: #091524;
 
     color: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
 
     outline: none;
 }
 
 input:focus,
 select:focus {
-    border-color: #20d68a;
+    border-color: var(--primary);
 }
 
 .modal-buttons {
     display: flex;
-
     gap: 10px;
 }
 
@@ -475,28 +428,56 @@ select:focus {
     flex: 1;
 }
 
-/* MOBILE */
+.location-box {
+    margin-top: 15px;
+
+    padding: 14px;
+
+    background: rgba(32,214,138,.07);
+
+    border: 1px solid rgba(32,214,138,.2);
+
+    border-radius: 13px;
+}
+
+.location-box div {
+    margin-bottom: 5px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+.location-box strong {
+    color: white;
+}
 
 @media(max-width:600px) {
 
     .header {
-        align-items: flex-start;
+        padding: 15px;
     }
 
-    .gps {
-        font-size: 11px;
+    .gps span {
+        display: none;
     }
 
-    .location {
-        align-items: flex-start;
+    .stats {
+        grid-template-columns: 1fr 1fr 1fr;
     }
 
-    .distance {
-        font-size: 12px;
+    .stat {
+        padding: 13px;
     }
 
+    .stat-number {
+        font-size: 22px;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
 }
-
 </style>
 </head>
 
@@ -506,84 +487,95 @@ select:focus {
 
 <div class="header">
 
-<div class="logo">
+    <div class="logo">
 
-<div class="logo-icon">
-🏓
-</div>
+        <div class="logo-icon">
+            🏓
+        </div>
 
-<div>
+        <div>
+            <h1>Beach Radar</h1>
+            <p>Jogadores perto de você</p>
+        </div>
 
-<h1>Beach Radar</h1>
+    </div>
 
-<p>Jogadores perto de você</p>
+    <div class="gps">
 
-</div>
+        <div id="gpsDot" class="dot"></div>
 
-</div>
+        <span id="gpsText">
+            GPS desligado
+        </span>
 
-<div class="gps">
-
-<div
-id="gpsDot"
-class="gps-dot">
-</div>
-
-<span id="gpsText">
-GPS aguardando
-</span>
-
-</div>
+    </div>
 
 </div>
 
 </header>
 
 
-<main>
+<main class="container">
+
 
 <!-- STATUS -->
 
-<section class="status">
+<section class="card hero">
 
-<div class="status-label">
-STATUS ATUAL
-</div>
+    <div class="hero-icon">
+        📡
+    </div>
 
-<div
-id="statusTitle"
-class="status-title">
+    <h2 id="mainStatus">
+        Beach Radar
+    </h2>
 
-Aguardando localização...
+    <p id="description">
+        Ative sua localização para descobrir jogadores
+        e arenas próximas.
+    </p>
 
-</div>
+    <div class="buttons">
 
-<div
-id="statusText"
-class="status-text">
+        <button
+            id="startButton"
+            class="primary"
+            onclick="startRadar()">
 
-Permita o acesso à localização
-para utilizar o Beach Radar.
+            📍 Entrar no Radar
 
-</div>
+        </button>
 
+        <button
+            id="stopButton"
+            class="danger"
+            onclick="stopRadar()"
+            style="display:none">
 
-<div
-id="activeBox"
-class="active-box">
+            ⛔ Sair do Radar
 
-<div class="active-icon">
-🏓
-</div>
+        </button>
 
-<h2>
-Você está no ponto!
-</h2>
+    </div>
 
-<p id="activeName">
-</p>
+    <div class="location-box">
 
-</div>
+        <div>
+            Latitude:
+            <strong id="latitude">---</strong>
+        </div>
+
+        <div>
+            Longitude:
+            <strong id="longitude">---</strong>
+        </div>
+
+        <div>
+            Precisão:
+            <strong id="accuracy">---</strong>
+        </div>
+
+    </div>
 
 </section>
 
@@ -592,206 +584,302 @@ Você está no ponto!
 
 <section class="stats">
 
-<div class="stat">
+    <div class="stat">
 
-<div
-id="locationsCount"
-class="number">
+        <div
+            id="playersCount"
+            class="stat-number">
+            0
+        </div>
 
-0
+        <div class="stat-label">
+            Jogadores
+        </div>
 
-</div>
+    </div>
 
-<div class="label">
-Locais cadastrados
-</div>
+    <div class="stat">
 
-</div>
+        <div
+            id="arenasCount"
+            class="stat-number">
+            0
+        </div>
+
+        <div class="stat-label">
+            Arenas
+        </div>
+
+    </div>
+
+    <div class="stat">
+
+        <div
+            id="nearCount"
+            class="stat-number">
+            0
+        </div>
+
+        <div class="stat-label">
+            Próximos
+        </div>
+
+    </div>
+
+</section>
 
 
-<div class="stat">
+<!-- JOGADORES -->
 
-<div
-id="activeCount"
-class="number">
+<section class="card">
 
-NÃO
+    <div class="section-title">
 
-</div>
+        <h2>
+            🏓 Jogadores no Radar
+        </h2>
 
-<div class="label">
-Você está em um ponto
-</div>
+    </div>
 
-</div>
+    <div id="playersList">
+
+        <div class="empty">
+            Entre no radar para aparecer aqui.
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- LOCAIS -->
+<!-- ARENAS -->
 
-<section class="section">
+<section class="card">
 
-<div class="section-header">
+    <div class="section-title">
 
-<h2>
-📍 Pontos de encontro
-</h2>
+        <h2>
+            📍 Arenas
+        </h2>
 
-<button
-class="primary"
-onclick="openModal()">
+        <button
+            class="primary"
+            onclick="openArenaModal()">
 
-+ Adicionar
+            + Arena
 
-</button>
+        </button>
 
-</div>
+    </div>
 
+    <div id="arenasList">
 
-<div
-id="locations"
-class="locations">
+        <div class="empty">
+            Nenhuma arena cadastrada.
+        </div>
 
-</div>
+    </div>
 
 </section>
+
 
 </main>
 
 
-<!-- MODAL -->
+<!-- MODAL ARENA -->
 
 <div
-id="modal"
-class="modal">
+    id="arenaModal"
+    class="modal">
 
-<div class="modal-box">
+    <div class="modal-box">
 
-<h2>
-Adicionar ponto
-</h2>
+        <h2>
+            📍 Nova Arena
+        </h2>
 
-<label>
-Nome do local
-</label>
+        <label>
+            Nome
+        </label>
 
-<input
-id="name"
-type="text"
-placeholder="Ex: Arena Central">
+        <input
+            id="arenaName"
+            type="text"
+            placeholder="Ex: Arena Central">
 
+        <label>
+            Tipo
+        </label>
 
-<label>
-Tipo
-</label>
+        <select id="arenaType">
 
-<select id="type">
+            <option>
+                Arena
+            </option>
 
-<option>Arena</option>
+            <option>
+                Quadra
+            </option>
 
-<option>Quadra</option>
+            <option>
+                Praia
+            </option>
 
-<option>Praia</option>
+            <option>
+                Clube
+            </option>
 
-<option>Clube</option>
+        </select>
 
-</select>
+        <label>
+            Raio de presença (metros)
+        </label>
 
+        <input
+            id="arenaRadius"
+            type="number"
+            value="100"
+            min="20"
+            max="1000">
 
-<label>
-Raio de presença
-</label>
+        <div class="modal-buttons">
 
-<input
-id="radius"
-type="number"
-value="100"
-min="20"
-max="1000">
+            <button
+                class="secondary"
+                onclick="closeArenaModal()">
 
+                Cancelar
 
-<div class="modal-buttons">
+            </button>
 
-<button
-class="secondary"
-onclick="closeModal()">
+            <button
+                class="primary"
+                onclick="createArena()">
 
-Cancelar
+                Criar
 
-</button>
+            </button>
 
-<button
-class="primary"
-onclick="addLocation()">
+        </div>
 
-Adicionar
-
-</button>
+    </div>
 
 </div>
 
-</div>
 
-</div>
+<!-- FIREBASE -->
 
+<script type="module">
 
-<script>
-
-/*
-========================================
-BEACH RADAR
-========================================
-*/
-
-let userLat = null;
-let userLon = null;
-
-let activeLocation = null;
-
-
-/*
-========================================
-STORAGE
-========================================
-*/
-
-function getLocations() {
-
-    try {
-
-        return JSON.parse(
-            localStorage.getItem(
-                "beachRadar"
-            )
-        ) || [];
-
-    } catch {
-
-        return [];
-
-    }
-
+import {
+    initializeApp
 }
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+    getDatabase,
+    ref,
+    set,
+    remove,
+    onValue,
+    push
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+
+import {
+    getAuth,
+    signInAnonymously
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 
-function saveLocations(data) {
+/* =====================================================
+   COLOQUE A CONFIGURAÇÃO DO SEU FIREBASE AQUI
+===================================================== */
 
-    localStorage.setItem(
-        "beachRadar",
-        JSON.stringify(data)
+const firebaseConfig = {
+
+    apiKey: "COLOQUE_SUA_API_KEY",
+
+    authDomain:
+        "SEU-PROJETO.firebaseapp.com",
+
+    databaseURL:
+        "https://SEU-PROJETO-default-rtdb.firebaseio.com",
+
+    projectId:
+        "SEU-PROJETO",
+
+    storageBucket:
+        "SEU-PROJETO.firebasestorage.app",
+
+    messagingSenderId:
+        "SEU_SENDER_ID",
+
+    appId:
+        "SEU_APP_ID"
+
+};
+
+
+/* =====================================================
+   FIREBASE
+===================================================== */
+
+const app =
+    initializeApp(firebaseConfig);
+
+const db =
+    getDatabase(app);
+
+const auth =
+    getAuth(app);
+
+
+/* =====================================================
+   ESTADO
+===================================================== */
+
+let currentLatitude = null;
+let currentLongitude = null;
+let currentAccuracy = null;
+
+let watchId = null;
+
+let radarActive = false;
+
+let firebaseUser = null;
+
+
+/* =====================================================
+   ID LOCAL
+===================================================== */
+
+let playerId =
+    localStorage.getItem(
+        "beachRadarPlayerId"
     );
 
+if (!playerId) {
+
+    playerId =
+        crypto.randomUUID();
+
+    localStorage.setItem(
+        "beachRadarPlayerId",
+        playerId
+    );
 }
 
 
-/*
-========================================
-DISTÂNCIA
-========================================
-*/
+/* =====================================================
+   DISTÂNCIA
+===================================================== */
 
-function calculateDistance(
+function distance(
     lat1,
     lon1,
     lat2,
@@ -829,92 +917,340 @@ function calculateDistance(
         );
 
     return R * c;
-
 }
 
 
-/*
-========================================
-GPS
-========================================
-*/
+/* =====================================================
+   AUTENTICAÇÃO
+===================================================== */
 
-function startGPS() {
+async function loginFirebase() {
 
-    if (!navigator.geolocation) {
+    try {
 
-        setGPS(
-            false,
-            "GPS indisponível"
+        const result =
+            await signInAnonymously(auth);
+
+        firebaseUser =
+            result.user;
+
+        console.log(
+            "Firebase conectado:",
+            firebaseUser.uid
         );
-
-        return;
 
     }
 
+    catch (error) {
 
-    navigator.geolocation.watchPosition(
+        console.error(error);
 
-        function(position) {
+        alert(
+            "Não foi possível conectar ao servidor."
+        );
 
-            userLat =
-                position.coords.latitude;
-
-            userLon =
-                position.coords.longitude;
-
-
-            setGPS(
-                true,
-                "GPS ativo"
-            );
+        throw error;
+    }
+}
 
 
-            checkLocations();
+/* =====================================================
+   INICIAR RADAR
+===================================================== */
+
+window.startRadar = async function() {
+
+    if (radarActive)
+        return;
+
+
+    if (!navigator.geolocation) {
+
+        alert(
+            "Este navegador não oferece localização."
+        );
+
+        return;
+    }
+
+
+    try {
+
+        await loginFirebase();
+
+    }
+
+    catch {
+
+        return;
+    }
+
+
+    navigator.geolocation.getCurrentPosition(
+
+        position => {
+
+            updateGPS(position);
+
+            radarActive = true;
+
+            document
+                .getElementById("startButton")
+                .style.display = "none";
+
+            document
+                .getElementById("stopButton")
+                .style.display = "block";
+
+            document
+                .getElementById("mainStatus")
+                .textContent =
+                "Você está no Radar 🟢";
+
+            document
+                .getElementById("description")
+                .textContent =
+                "Sua localização está sendo compartilhada enquanto o Radar estiver ativo.";
+
+            startWatching();
 
         },
 
-        function() {
+        error => {
 
-            setGPS(
-                false,
-                "Localização bloqueada"
+            console.error(error);
+
+            alert(
+                "Permita o acesso à localização para entrar no Radar."
             );
-
-
-            document
-                .getElementById(
-                    "statusTitle"
-                )
-                .textContent =
-                "Localização bloqueada";
-
-
-            document
-                .getElementById(
-                    "statusText"
-                )
-                .textContent =
-                "Permita a localização no navegador.";
 
         },
 
         {
-
             enableHighAccuracy: true,
-
-            maximumAge: 5000,
-
-            timeout: 15000
-
+            timeout: 15000,
+            maximumAge: 0
         }
 
     );
 
+};
+
+
+/* =====================================================
+   WATCH GPS
+===================================================== */
+
+function startWatching() {
+
+    if (watchId !== null)
+        return;
+
+
+    watchId =
+        navigator.geolocation.watchPosition(
+
+            position => {
+
+                updateGPS(position);
+
+            },
+
+            error => {
+
+                console.error(
+                    "GPS:",
+                    error
+                );
+
+                setGPSStatus(
+                    false,
+                    "GPS indisponível"
+                );
+
+            },
+
+            {
+
+                enableHighAccuracy: true,
+
+                maximumAge: 3000,
+
+                timeout: 15000
+
+            }
+
+        );
 }
 
 
-function setGPS(
+/* =====================================================
+   ATUALIZAR GPS
+===================================================== */
+
+async function updateGPS(position) {
+
+    currentLatitude =
+        position.coords.latitude;
+
+    currentLongitude =
+        position.coords.longitude;
+
+    currentAccuracy =
+        position.coords.accuracy;
+
+
+    document
+        .getElementById("latitude")
+        .textContent =
+        currentLatitude.toFixed(6);
+
+    document
+        .getElementById("longitude")
+        .textContent =
+        currentLongitude.toFixed(6);
+
+    document
+        .getElementById("accuracy")
+        .textContent =
+        Math.round(currentAccuracy)
+        + " m";
+
+
+    setGPSStatus(
+        true,
+        "GPS ativo"
+    );
+
+
+    if (radarActive && firebaseUser) {
+
+        await publishPosition();
+
+    }
+
+    renderArenas();
+
+}
+
+
+/* =====================================================
+   PUBLICAR LOCALIZAÇÃO
+===================================================== */
+
+async function publishPosition() {
+
+    if (
+        currentLatitude === null ||
+        currentLongitude === null
+    )
+        return;
+
+
+    const playerRef =
+        ref(
+            db,
+            "players/" + playerId
+        );
+
+
+    await set(
+        playerRef,
+        {
+
+            id: playerId,
+
+            latitude:
+                currentLatitude,
+
+            longitude:
+                currentLongitude,
+
+            accuracy:
+                currentAccuracy,
+
+            online: true,
+
+            updatedAt:
+                Date.now()
+
+        }
+    );
+}
+
+
+/* =====================================================
+   SAIR DO RADAR
+===================================================== */
+
+window.stopRadar = async function() {
+
+    radarActive = false;
+
+
+    if (watchId !== null) {
+
+        navigator.geolocation
+            .clearWatch(watchId);
+
+        watchId = null;
+
+    }
+
+
+    if (firebaseUser) {
+
+        try {
+
+            await remove(
+                ref(
+                    db,
+                    "players/" + playerId
+                )
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+        }
+
+    }
+
+
+    document
+        .getElementById("startButton")
+        .style.display = "block";
+
+    document
+        .getElementById("stopButton")
+        .style.display = "none";
+
+
+    document
+        .getElementById("mainStatus")
+        .textContent =
+        "Radar desligado";
+
+    document
+        .getElementById("description")
+        .textContent =
+        "Sua localização não está mais sendo compartilhada.";
+
+    setGPSStatus(
+        false,
+        "Radar desligado"
+    );
+};
+
+
+/* =====================================================
+   STATUS GPS
+===================================================== */
+
+function setGPSStatus(
     active,
     text
 ) {
@@ -930,508 +1266,272 @@ function setGPS(
         );
 
 
-    label.textContent = text;
+    label.textContent =
+        text;
 
 
-    if (active) {
+    if (active)
+        dot.classList.add("active");
 
-        dot.classList.add(
-            "active"
-        );
-
-    } else {
-
-        dot.classList.remove(
-            "active"
-        );
-
-    }
-
+    else
+        dot.classList.remove("active");
 }
 
 
-/*
-========================================
-VERIFICAR PONTOS
-========================================
-*/
+/* =====================================================
+   JOGADORES
+===================================================== */
 
-function checkLocations() {
+function listenPlayers() {
 
-    if (
-        userLat === null ||
-        userLon === null
-    ) {
-
-        return;
-
-    }
+    const playersRef =
+        ref(db, "players");
 
 
-    const locations =
-        getLocations();
+    onValue(
+        playersRef,
+        snapshot => {
 
+            const data =
+                snapshot.val() || {};
 
-    activeLocation = null;
-
-
-    for (
-        const location
-        of locations
-    ) {
-
-        const meters =
-            calculateDistance(
-
-                userLat,
-                userLon,
-
-                location.latitude,
-                location.longitude
-
-            );
-
-
-        if (
-            meters <= location.radius
-        ) {
-
-            activeLocation = {
-
-                ...location,
-
-                distance: meters
-
-            };
-
-            break;
+            renderPlayers(data);
 
         }
-
-    }
-
-
-    updateScreen();
-
+    );
 }
 
 
-/*
-========================================
-ATUALIZAR TELA
-========================================
-*/
+function renderPlayers(players) {
 
-function updateScreen() {
-
-    const title =
+    const list =
         document.getElementById(
-            "statusTitle"
-        );
-
-    const text =
-        document.getElementById(
-            "statusText"
-        );
-
-    const box =
-        document.getElementById(
-            "activeBox"
+            "playersList"
         );
 
 
-    if (activeLocation) {
-
-        title.textContent =
-            "Você está jogando!";
+    const now =
+        Date.now();
 
 
-        text.textContent =
-            "Ponto de encontro detectado.";
+    const activePlayers =
+        Object.values(players)
+            .filter(player => {
 
+                return (
+                    player.online === true &&
 
-        box.classList.add(
-            "show"
-        );
+                    now -
+                    player.updatedAt
+                    <
+                    60000
 
+                );
 
-        document
-            .getElementById(
-                "activeName"
-            )
-            .textContent =
-
-            activeLocation.name
-            +
-            " • "
-            +
-            Math.round(
-                activeLocation.distance
-            )
-            +
-            " metros";
-
-    } else {
-
-        title.textContent =
-            "Nenhum ponto próximo";
-
-
-        text.textContent =
-            "Nenhum ponto foi encontrado perto de você.";
-
-
-        box.classList.remove(
-            "show"
-        );
-
-    }
-
-
-    renderLocations();
-
-    updateStats();
-
-}
-
-
-/*
-========================================
-ESTATÍSTICAS
-========================================
-*/
-
-function updateStats() {
-
-    const locations =
-        getLocations();
+            });
 
 
     document
         .getElementById(
-            "locationsCount"
+            "playersCount"
         )
         .textContent =
-        locations.length;
+        activePlayers.length;
 
 
-    document
-        .getElementById(
-            "activeCount"
-        )
-        .textContent =
-        activeLocation
-        ? "SIM"
-        : "NÃO";
+    if (activePlayers.length === 0) {
 
-}
-
-
-/*
-========================================
-RENDERIZAR
-========================================
-*/
-
-function renderLocations() {
-
-    const container =
-        document.getElementById(
-            "locations"
-        );
-
-
-    const locations =
-        getLocations();
-
-
-    if (
-        locations.length === 0
-    ) {
-
-        container.innerHTML = `
-
+        list.innerHTML = `
             <div class="empty">
-
-                <div class="empty-icon">
-                    📍
-                </div>
-
-                Nenhum ponto cadastrado.
-
-                <br>
-
-                Clique em
-                "+ Adicionar"
-                para criar um.
-
+                🏓 Nenhum jogador no radar agora.
             </div>
-
         `;
 
         return;
-
     }
 
 
-    container.innerHTML = "";
+    const nearby =
+        activePlayers
+            .map(player => {
 
+                let meters = null;
 
-    locations.forEach(
-        location => {
-
-            let meters = null;
-
-            let isActive = false;
-
-
-            if (
-                userLat !== null &&
-                userLon !== null
-            ) {
-
-                meters =
-                    calculateDistance(
-
-                        userLat,
-                        userLon,
-
-                        location.latitude,
-                        location.longitude
-
-                    );
-
-
-                isActive =
-                    meters <=
-                    location.radius;
-
-            }
-
-
-            let distanceText =
-                "Local salvo";
-
-
-            if (meters !== null) {
 
                 if (
-                    meters >= 1000
+                    currentLatitude !== null &&
+                    currentLongitude !== null
                 ) {
 
-                    distanceText =
-                        (
-                            meters / 1000
-                        ).toFixed(1)
-                        +
-                        " km";
+                    meters =
+                        distance(
 
-                } else {
+                            currentLatitude,
+                            currentLongitude,
 
-                    distanceText =
-                        Math.round(
-                            meters
-                        )
-                        +
-                        " m";
+                            player.latitude,
+                            player.longitude
+
+                        );
 
                 }
 
-            }
+
+                return {
+                    ...player,
+                    meters
+                };
+
+            })
+            .filter(player =>
+                player.id !== playerId
+            )
+            .sort((a,b) =>
+                (a.meters ?? Infinity)
+                -
+                (b.meters ?? Infinity)
+            );
 
 
-            const div =
-                document.createElement(
-                    "div"
+    let html = "";
+
+
+    nearby.forEach(player => {
+
+        let distanceText =
+            "Localização recebida";
+
+
+        if (player.meters !== null) {
+
+            distanceText =
+                formatDistance(
+                    player.meters
                 );
 
-
-            div.className =
-                "location";
+        }
 
 
-            if (isActive) {
+        html += `
 
-                div.classList.add(
-                    "active"
-                );
+            <div class="player">
 
-            }
+                <div class="player-left">
 
-
-            div.innerHTML = `
-
-                <div class="location-info">
-
-                    <div class="location-icon">
-                        📍
+                    <div class="player-icon">
+                        🏓
                     </div>
 
                     <div>
 
-                        <div class="location-name">
-
-                            ${escapeHTML(
-                                location.name
-                            )}
-
+                        <div class="player-name">
+                            Jogador
                         </div>
 
-                        <div class="location-meta">
-
-                            ${escapeHTML(
-                                location.type
-                            )}
-
-                            • Raio:
-                            ${location.radius} m
-
+                        <div class="player-meta">
+                            Atualizado agora
                         </div>
-
-                        <button
-                            class="remove"
-                            onclick="removeLocation('${location.id}')">
-
-                            Remover
-
-                        </button>
 
                     </div>
 
                 </div>
 
                 <div class="distance">
-
                     ${distanceText}
-
                 </div>
 
-            `;
+            </div>
+
+        `;
+
+    });
 
 
-            container.appendChild(
-                div
-            );
+    if (!html) {
 
-        }
-    );
+        html = `
+            <div class="empty">
+                🏓 Você é o único jogador visível.
+            </div>
+        `;
 
+    }
+
+
+    list.innerHTML =
+        html;
 }
 
 
-/*
-========================================
-PROTEÇÃO
-========================================
-*/
+/* =====================================================
+   ARENAS
+===================================================== */
 
-function escapeHTML(text) {
-
-    return String(text)
-
-        .replaceAll(
-            "&",
-            "&amp;"
-        )
-
-        .replaceAll(
-            "<",
-            "&lt;"
-        )
-
-        .replaceAll(
-            ">",
-            "&gt;"
-        )
-
-        .replaceAll(
-            '"',
-            "&quot;"
-        )
-
-        .replaceAll(
-            "'",
-            "&#039;"
-        );
-
-}
-
-
-/*
-========================================
-MODAL
-========================================
-*/
-
-function openModal() {
-
-    document
-        .getElementById(
-            "modal"
-        )
-        .classList
-        .add("show");
-
-}
-
-
-function closeModal() {
-
-    document
-        .getElementById(
-            "modal"
-        )
-        .classList
-        .remove("show");
-
-}
-
-
-/*
-========================================
-ADICIONAR LOCAL
-========================================
-*/
-
-function addLocation() {
+window.openArenaModal = function() {
 
     if (
-        userLat === null ||
-        userLon === null
+        currentLatitude === null ||
+        currentLongitude === null
     ) {
 
         alert(
-            "Ative a localização primeiro."
+            "Entre no Radar primeiro para usar sua localização."
         );
 
         return;
+    }
 
+
+    document
+        .getElementById("arenaModal")
+        .classList
+        .add("open");
+
+};
+
+
+window.closeArenaModal = function() {
+
+    document
+        .getElementById("arenaModal")
+        .classList
+        .remove("open");
+
+};
+
+
+window.createArena = async function() {
+
+    if (
+        currentLatitude === null ||
+        currentLongitude === null
+    ) {
+
+        alert(
+            "Sua localização ainda não está disponível."
+        );
+
+        return;
     }
 
 
     const name =
         document
-            .getElementById(
-                "name"
-            )
+            .getElementById("arenaName")
             .value
             .trim();
 
 
     const type =
         document
-            .getElementById(
-                "type"
-            )
+            .getElementById("arenaType")
             .value;
 
 
     const radius =
         Number(
             document
-                .getElementById(
-                    "radius"
-                )
+                .getElementById("arenaRadius")
                 .value
         );
 
@@ -1439,11 +1539,10 @@ function addLocation() {
     if (!name) {
 
         alert(
-            "Digite o nome do local."
+            "Digite o nome da arena."
         );
 
         return;
-
     }
 
 
@@ -1453,148 +1552,251 @@ function addLocation() {
     ) {
 
         alert(
-            "O raio deve estar entre 20 e 1000 metros."
+            "O raio precisa estar entre 20 e 1000 metros."
         );
 
         return;
-
     }
 
 
-    const locations =
-        getLocations();
+    const arenaRef =
+        push(
+            ref(db, "arenas")
+        );
 
 
-    /*
-    Verificar locais próximos
-    */
+    await set(
+        arenaRef,
+        {
 
-    for (
-        const location
-        of locations
-    ) {
+            id: arenaRef.key,
 
-        const meters =
-            calculateDistance(
+            name: name,
 
-                userLat,
-                userLon,
+            type: type,
 
-                location.latitude,
-                location.longitude
+            radius: radius,
 
-            );
+            latitude:
+                currentLatitude,
 
+            longitude:
+                currentLongitude,
 
-        if (
-            meters < 50
-        ) {
-
-            alert(
-                "Já existe um ponto próximo: "
-                +
-                location.name
-            );
-
-            return;
+            createdAt:
+                Date.now()
 
         }
-
-    }
-
-
-    const newLocation = {
-
-        id:
-            crypto.randomUUID(),
-
-        name:
-            name,
-
-        type:
-            type,
-
-        radius:
-            radius,
-
-        latitude:
-            userLat,
-
-        longitude:
-            userLon,
-
-        createdAt:
-            new Date()
-            .toISOString()
-
-    };
-
-
-    locations.push(
-        newLocation
-    );
-
-
-    saveLocations(
-        locations
     );
 
 
     document
-        .getElementById(
-            "name"
-        )
+        .getElementById("arenaName")
         .value = "";
 
 
-    closeModal();
+    closeArenaModal();
+
+};
 
 
-    checkLocations();
+/* =====================================================
+   ESCUTAR ARENAS
+===================================================== */
+
+function listenArenas() {
+
+    const arenasRef =
+        ref(db, "arenas");
+
+
+    onValue(
+        arenasRef,
+        snapshot => {
+
+            const arenas =
+                snapshot.val() || {};
+
+            window.currentArenas =
+                Object.values(arenas);
+
+            renderArenas();
+
+        }
+    );
 
 }
 
 
-/*
-========================================
-REMOVER
-========================================
-*/
-
-function removeLocation(id) {
-
-    const locations =
-        getLocations();
+window.currentArenas = [];
 
 
-    const updated =
-        locations.filter(
-            location =>
-                location.id !== id
+function renderArenas() {
+
+    const list =
+        document.getElementById(
+            "arenasList"
         );
 
 
-    saveLocations(
-        updated
-    );
+    const arenas =
+        window.currentArenas;
 
 
-    checkLocations();
+    document
+        .getElementById(
+            "arenasCount"
+        )
+        .textContent =
+        arenas.length;
 
+
+    if (arenas.length === 0) {
+
+        list.innerHTML = `
+            <div class="empty">
+                📍 Nenhuma arena cadastrada.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    let nearbyCount = 0;
+
+    let html = "";
+
+
+    arenas.forEach(arena => {
+
+        let meters = null;
+
+        let near = false;
+
+
+        if (
+            currentLatitude !== null &&
+            currentLongitude !== null
+        ) {
+
+            meters =
+                distance(
+
+                    currentLatitude,
+                    currentLongitude,
+
+                    arena.latitude,
+                    arena.longitude
+
+                );
+
+
+            if (
+                meters <= arena.radius
+            ) {
+
+                near = true;
+
+                nearbyCount++;
+
+            }
+
+        }
+
+
+        html += `
+
+            <div class="arena ${near ? "near" : ""}">
+
+                <div class="arena-name">
+
+                    ${escapeHTML(arena.name)}
+
+                </div>
+
+                <div class="arena-meta">
+
+                    ${escapeHTML(arena.type)}
+
+                    • Raio ${arena.radius} m
+
+                    ${
+                        meters !== null
+                        ? " • " +
+                          formatDistance(meters)
+                        : ""
+                    }
+
+                    ${
+                        near
+                        ? " • 🟢 VOCÊ ESTÁ AQUI"
+                        : ""
+                    }
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+
+    document
+        .getElementById(
+            "nearCount"
+        )
+        .textContent =
+        nearbyCount;
+
+
+    list.innerHTML =
+        html;
 }
 
 
-/*
-========================================
-INICIAR
-========================================
-*/
+/* =====================================================
+   FORMATAÇÃO
+===================================================== */
 
-renderLocations();
+function formatDistance(meters) {
 
-updateStats();
+    if (meters < 1000) {
 
-startGPS();
+        return (
+            Math.round(meters)
+            + " m"
+        );
+
+    }
+
+    return (
+        (meters / 1000)
+            .toFixed(1)
+        + " km"
+    );
+}
+
+
+function escapeHTML(text) {
+
+    return String(text)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+
+/* =====================================================
+   INICIAR
+===================================================== */
+
+listenPlayers();
+
+listenArenas();
 
 </script>
 
